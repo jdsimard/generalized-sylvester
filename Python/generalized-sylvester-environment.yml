@@ -1,0 +1,7 @@
+name: generalized-sylvester-environment
+channels:
+  - defaults
+dependencies:
+  - mypy
+  - numpy
+  - pytest

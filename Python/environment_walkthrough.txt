@@ -1,0 +1,44 @@
+
+
+##########################################
+### Manual Setup / YML File Generation ###
+##########################################
+
+
+
+# to create the conda environment from scratch
+
+conda create -n generalized-sylvester-environment
+conda activate generalized-sylvester-environment
+
+
+
+# install dependencies
+
+conda install pytest mypy numpy
+
+
+
+# export the YML file
+
+conda export --from-history > generalized-sylvester-environment.yml
+
+
+
+# remember to delete the prefix line at the end of the YML file and add
+
+
+
+################################
+### Removing the Environment ###
+################################
+
+conda remove -n generalized-sylvester-environment --all
+
+
+
+##################################################
+### Creating the Environment from the YML File ###
+##################################################
+
+conda env create -n generalized-sylvester-environment --file generalized-sylvester-environment.yml
