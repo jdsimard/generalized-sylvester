@@ -1,15 +1,20 @@
 # generalized-sylvester
-A MATLAB function to solve the generalized Sylvester equation
+MATLAB and Python/NumPy functions to solve the generalized Sylvester equation
 
 $$AXB + CXD = E$$
 
-MATLAB contains the function sylvester which solves a matrix equation of the form $AX + XB = C$, but no such function for solving the generalized Sylvester equation. The included function solves the matrix equation $AXB + CXD = E$ using a vectorization approach, so long as a unique solution exists. Because it uses a vectorization approach, it may require the inversion of a large matrix with dimensions $nm \times nm$, where $A$ and $C$ are $n \times n$ matrices and $B$ and $D$ are $m \times m$ matrices, so currently it may not perform well (or as expected) if the dimension becomes large. A future improvement should switch to a generalized eigenvalue / eigenvector approach.
+MATLAB contains the function sylvester which solves a matrix equation of the form $AX + XB = C$, but no such function for solving the generalized Sylvester equation. The included function solves the matrix equation $AXB + CXD = E$ using a naive vectorization approach, so long as a unique solution exists. Because it uses a vectorization approach, it may require the inversion of a large matrix with dimensions $nm \times nm$, where $A$ and $C$ are $n \times n$ matrices and $B$ and $D$ are $m \times m$ matrices, so currently it may not perform well (or as expected) if the dimension becomes large. A future improvement should switch to a generalized eigenvalue / eigenvector approach.
 
-All included functions and scripts have been included under the namespaces fn_matrix_eqns, fn_matrix_eqns.examples, and fn_matrix_eqns.tests to avoid possible namespace conflicts in the future.
+A Python implementation using the NumPy framework is also included.
+
+
+All included MATLAB functions and scripts have been included under the namespaces fn_matrix_eqns, fn_matrix_eqns.examples, and fn_matrix_eqns.tests to avoid possible namespace conflicts in the future.
+
+The Python implementation contains a YML file to generate a conda environment, along with some batch files for running unit tests and type checking. The implemented module is in ".\Python\src\generalized_sylvester.py".
 
 
 
-Project guide:
+Project guide (MATLAB):
 
 fn_matrix_eqns.generalized_sylvester.m
 - the function for solving the generalized Sylvester equation;

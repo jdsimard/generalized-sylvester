@@ -1,2 +1,2 @@
 
-mypy src\generalized_sylvester.py
+mypy .\src\generalized_sylvester.py
