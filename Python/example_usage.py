@@ -1,5 +1,5 @@
 import numpy as np
-from generalized_sylvester import generalized_sylvester as gs
+from generalized_sylvester import generalized_sylvester
 
 # A and C will be 4x4
 # B and D will be 2x2
@@ -13,7 +13,7 @@ A, B, C, D, E = rand_mat(n,n), rand_mat(m,m), rand_mat(n,n), rand_mat(m,m), rand
 
 print(f"A = {A}", f"B = {B}", f"C = {C}", f"D = {D}", f"E = {E}", sep="\n\n")
 
-X = gs.generalized_sylvester(A, B, C, D, E)
+X = generalized_sylvester(A, B, C, D, E)
 print(f"\n-> X = {X}")
 
 eqn_error = A @ X @ B + C @ X @ D - E
