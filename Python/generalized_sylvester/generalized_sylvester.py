@@ -31,7 +31,7 @@ def generalized_sylvester(A: np.ndarray, B: np.ndarray, C: np.ndarray, D: np.nda
     m, _ = B.shape
     if E.ndim == 1:
         try:
-            E = E.reshape((n,m))
+            E = E.reshape((n,m), order='F')
         except:
             raise ValueError("E must be either a 1darray or 2darray with consistent shape.")
     elif E.ndim == 2:
@@ -61,11 +61,13 @@ def generalized_sylvester(A: np.ndarray, B: np.ndarray, C: np.ndarray, D: np.nda
         raise ValueError("The problem is singular and a unique solution does not exist.")
     
     # generate vectorized solution and verify consistency
-    vecX: np.ndarray = np.linalg.inv(kroneckor_vectorization_factor) @ E.reshape((-1,1))
-    
+    # note: need to use Fortran-like indexing (order='F') rather than C-like indexing so that reshape does the traditional/mathematical vectorization operation on E
+    vecX: np.ndarray = np.linalg.inv(kroneckor_vectorization_factor) @ E.reshape((-1,1), order='F')
+
     # reshape to proper solution and return
     try:
-        X: np.ndarray = vecX.reshape(E.shape)
+        # note: need to use Fortran-like indexing (order='F') rather than C-like indexing so that reshape correctly undoes the previous vectorization on E, for X
+        X: np.ndarray = vecX.reshape(E.shape, order='F')
     except:
         raise ValueError("Couldn't reshape vectorized solution to be consistent with the equation.")
     return X

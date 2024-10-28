@@ -1,2 +1,2 @@
 
-pytest -v .\src\test\test_generalized_sylvester.py
+pytest -v .\generalized_sylvester\test\test_generalized_sylvester.py
