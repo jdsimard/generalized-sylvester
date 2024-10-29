@@ -1,7 +1,7 @@
-import numpy as np
+import numpy as _np
 
 
-def generalized_sylvester(A: np.ndarray, B: np.ndarray, C: np.ndarray, D: np.ndarray, E: np.ndarray) -> np.ndarray:
+def solve(A: _np.ndarray, B: _np.ndarray, C: _np.ndarray, D: _np.ndarray, E: _np.ndarray) -> _np.ndarray:
     # ToDo: Doc string
 
     # make sure that A, B, C, D are square 2darray
@@ -44,7 +44,7 @@ def generalized_sylvester(A: np.ndarray, B: np.ndarray, C: np.ndarray, D: np.nda
     # check for finiteness (no inf, -inf, or NaN)
     # check 'isfinite' can be used
     try:
-        all_is_finite: np.bool = np.all(np.isfinite(A)) and np.all(np.isfinite(B)) and np.all(np.isfinite(C)) and np.all(np.isfinite(D)) and np.all(np.isfinite(E))
+        all_is_finite: _np.bool = _np.all(_np.isfinite(A)) and _np.all(_np.isfinite(B)) and _np.all(_np.isfinite(C)) and _np.all(_np.isfinite(D)) and _np.all(_np.isfinite(E))
     except TypeError:
         raise TypeError("Couldn't check whether all matrix entries are finite. Ensure that A, B, C, D, and E are numeric.")
     # check no inf or nan or empty
@@ -52,9 +52,9 @@ def generalized_sylvester(A: np.ndarray, B: np.ndarray, C: np.ndarray, D: np.nda
         raise ValueError("Provided matrices must contain only finite values (no inf, -inf, or NaN).")
 
     # generate Kron vectorization factor, check that it has non-zero determinant
-    kroneckor_vectorization_factor: np.ndarray = np.kron(B.T, A) + np.kron(D.T, C)
+    kroneckor_vectorization_factor: _np.ndarray = _np.kron(B.T, A) + _np.kron(D.T, C)
     try:
-        det: float = float(np.linalg.det(kroneckor_vectorization_factor))
+        det: float = float(_np.linalg.det(kroneckor_vectorization_factor))
     except ValueError:
         raise ValueError("Couldn't calculate determinant to ensure non-singularity of the problem. Ensure that A, B, C, D, and E are numeric, and ensure that A, B, C, and D are square with shape(A) == shape(C) and shape(B) == shape(D).")
     if det == 0:
@@ -62,12 +62,12 @@ def generalized_sylvester(A: np.ndarray, B: np.ndarray, C: np.ndarray, D: np.nda
     
     # generate vectorized solution and verify consistency
     # note: need to use Fortran-like indexing (order='F') rather than C-like indexing so that reshape does the traditional/mathematical vectorization operation on E
-    vecX: np.ndarray = np.linalg.inv(kroneckor_vectorization_factor) @ E.reshape((-1,1), order='F')
+    vecX: _np.ndarray = _np.linalg.inv(kroneckor_vectorization_factor) @ E.reshape((-1,1), order='F')
 
     # reshape to proper solution and return
     try:
         # note: need to use Fortran-like indexing (order='F') rather than C-like indexing so that reshape correctly undoes the previous vectorization on E, for X
-        X: np.ndarray = vecX.reshape(E.shape, order='F')
+        X: _np.ndarray = vecX.reshape(E.shape, order='F')
     except:
         raise ValueError("Couldn't reshape vectorized solution to be consistent with the equation.")
     return X
@@ -75,12 +75,10 @@ def generalized_sylvester(A: np.ndarray, B: np.ndarray, C: np.ndarray, D: np.nda
 
 
 def main() -> None:
-    # if this runs, print a help blurb
-    # ToDo
-    print("A module for solve the generalized Sylvester equation AXB + CXD = E for the unknown X.")
+    # ToDo help(module)
+    print("A module for solving the generalized Sylvester equation AXB + CXD = E for the unknown X.")
 
 
 
 if __name__ == "__main__":
-    # if this runs, print a help blurb
     main()

@@ -1,1 +1,2 @@
-from generalized_sylvester.src.generalized_sylvester import generalized_sylvester
+from ._generalized_sylvester import solve
+from . import error

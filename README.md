@@ -10,11 +10,15 @@ A Python implementation using the NumPy framework is also included.
 
 All included MATLAB functions and scripts have been included under the namespaces fn_matrix_eqns, fn_matrix_eqns.examples, and fn_matrix_eqns.tests to avoid possible namespace conflicts in the future.
 
-The Python implementation contains a YML file to generate a conda environment, along with some batch files for running unit tests and type checking. The implemented module is in ".\Python\generalized_sylvester\src\generalized_sylvester.py". Example usage can be found in ".\Python\example_usage.py".
+The Python implementation contains a YML file to generate a conda environment, along with some batch files for running unit tests and type checking. The implemented module is in ".\Python\generalized_sylvester". Example usage can be found in ".\Python\example_usage.py".
 
-To use the Python implementation as a module, you only need the directory tree at ".\Python\generalized_sylvester". Simply make sure this is in a location that can be found by the Python interpreter, and then you can import the function via something like
+To use the Python implementation as a module, you only need the directory tree at ".\Python\generalized_sylvester". Simply make sure this is in a location that can be found by the Python interpreter, and then you can import the functions via something like
 ```
-from generalized_sylvester import generalized_sylvester
+import generalized_sylvester as gs
+```
+and/or
+```
+import generalized_sylvester.error as gs_error
 ```
 
 
