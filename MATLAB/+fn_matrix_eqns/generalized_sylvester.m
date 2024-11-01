@@ -17,6 +17,9 @@ function [X] = generalized_sylvester(A,B,C,D,E)
 %
 %   OUTPUTS
 %   X: a matrix of dimension n times m satisfying AXB + CXD = E;
+
+
+    % Created by Joel D. Simard
     
     % Get dimensions of the matrices A and B. These will be used to validate consistency of all inputs A, B, C, D, and E.
     n = length(A);

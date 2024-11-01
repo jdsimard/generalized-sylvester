@@ -1,3 +1,5 @@
+# Created by Joel D. Simard
+
 import numpy as np
 import generalized_sylvester as gs
 import generalized_sylvester.error as gs_error

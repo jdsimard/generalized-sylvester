@@ -1,3 +1,5 @@
+# Created by Joel D. Simard
+
 import pytest
 from generalized_sylvester import solve
 import numpy as np

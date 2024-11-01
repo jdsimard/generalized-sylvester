@@ -1,3 +1,5 @@
+# Created by Joel D. Simard
+
 import numpy as _np
 
 

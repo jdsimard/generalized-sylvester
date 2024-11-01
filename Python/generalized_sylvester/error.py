@@ -1,3 +1,5 @@
+# Created by Joel D. Simard
+
 import numpy as _np
 
 def eqn_error_matrix(A: _np.ndarray, B: _np.ndarray, C: _np.ndarray, D: _np.ndarray, E: _np.ndarray, X: _np.ndarray) -> _np.ndarray:
