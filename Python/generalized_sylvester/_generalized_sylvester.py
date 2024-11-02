@@ -4,7 +4,30 @@ import numpy as _np
 
 
 def solve(A: _np.ndarray, B: _np.ndarray, C: _np.ndarray, D: _np.ndarray, E: _np.ndarray) -> _np.ndarray:
-    # ToDo: Doc string
+    """Solve the generalized Sylvester equation, AXB + CXD = E, for the matrix X.
+
+    Given A, B, C, D, and E, each a numpy.ndarray with ndim == 1 or 2, and having consistent dimensions, return the numpy.ndarray that solves the matrix equation A @ X @ B + C @ X @ D == E. An argument can only have ndim == 1 if it is a scalar, i.e. ndim == 1 and size == 1.
+
+    Args:
+        A: a square numpy.ndarray with shape (1,) or (n,n,), with entries satisfying numpy.isfinite.
+        B: a square numpy.ndarray with shape (1,) or (m,m,), with entries satisfying numpy.isfinite.
+        C: a square numpy.ndarray with C.shape == A.shape, with entries satisfying numpy.isfinite.
+        D: a square numpy.ndarray with D.shape == B.shape, with entries satisfying numpy.isfinite.
+        E: a numpy.ndarray with E.shape == (n,m,) (or (1,) if A/B/C/D.shape = (1,)), with entries satisfying numpy.isfinite.
+
+    Returns:
+        A numpy.ndarray, X, with X.shape == (n,m,), that satisfies A @ X @ B + C @ X @ D == E.
+
+    Raises:
+        ValueError: A, B, C, D must be square matrices: either 1) 1darray with arr.size == 1, or 2) 2darray with arr.shape[0] == arr.shape[1].
+        ValueError: A and C must be the same shape, and B and D must be the same shape.
+        ValueError: E must be either a 1darray or 2darray with consistent shape.
+        ValueError: Provided matrices must contain only finite values (no inf, -inf, or NaN).
+        ValueError: Couldn't calculate determinant to ensure non-singularity of the problem. Ensure that A, B, C, D, and E are numeric, and ensure that A, B, C, and D are square with shape(A) == shape(C) and shape(B) == shape(D).
+        ValueError: The problem is singular and a unique solution does not exist.
+        ValueError: Couldn't reshape vectorized solution to be consistent with the equation.
+        TypeError: Couldn't check whether all matrix entries are finite. Ensure that A, B, C, D, and E are numeric.
+    """
 
     # make sure that A, B, C, D are square 2darray
     square_matrices = [A, B, C, D]
