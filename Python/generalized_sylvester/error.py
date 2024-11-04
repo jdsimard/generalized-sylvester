@@ -20,7 +20,7 @@ def eqn_error_matrix(A: _np.ndarray, B: _np.ndarray, C: _np.ndarray, D: _np.ndar
     """
     return A @ X @ B + C @ X @ D - E
 
-def eqn_error_norm(A: _np.ndarray, B: _np.ndarray, C: _np.ndarray, D: _np.ndarray, E: _np.ndarray, X: _np.ndarray) -> _np.ndarray:
+def eqn_error_norm(A: _np.ndarray, B: _np.ndarray, C: _np.ndarray, D: _np.ndarray, E: _np.ndarray, X: _np.ndarray) -> float:
     """Return the Frobenius norm of the ndarray A @ X @ B + C @ X @ D - E.
 
     Given A, B, C, D, E, and X, each satisfying the conditions of generalized_sylvester.solve(...), return the Frobenius norm of the numpy.ndarray representing the equation error, A @ X @ B + C @ X @ D - E.
@@ -36,4 +36,4 @@ def eqn_error_norm(A: _np.ndarray, B: _np.ndarray, C: _np.ndarray, D: _np.ndarra
     Returns:
         The Frobenius norm of the numpy.ndarray A @ X @ B + C @ X @ D - E.
     """
-    return _np.linalg.norm(A @ X @ B + C @ X @ D - E, ord="fro")
+    return float(_np.linalg.norm(A @ X @ B + C @ X @ D - E, ord="fro"))

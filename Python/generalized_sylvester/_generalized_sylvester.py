@@ -79,7 +79,7 @@ def solve(A: _np.ndarray, B: _np.ndarray, C: _np.ndarray, D: _np.ndarray, E: _np
     # generate Kron vectorization factor, check that it has non-zero determinant
     kroneckor_vectorization_factor: _np.ndarray = _np.kron(B.T, A) + _np.kron(D.T, C)
     try:
-        det: float = float(_np.linalg.det(kroneckor_vectorization_factor))
+        det: complex = complex(_np.linalg.det(kroneckor_vectorization_factor))
     except ValueError:
         raise ValueError("Couldn't calculate determinant to ensure non-singularity of the problem. Ensure that A, B, C, D, and E are numeric, and ensure that A, B, C, and D are square with shape(A) == shape(C) and shape(B) == shape(D).")
     if det == 0:
